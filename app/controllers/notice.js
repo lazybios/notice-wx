@@ -156,16 +156,6 @@ var notice = function(){
     var wxapi = require('../models/wxapi')(wxcfg);
     ep.emit('wxapi', wxapi);
     console.log('wxapi is ready');
-    
-    // MongoClient.connect(config.db, function (err, db) {
-    //     if(err) ep.throw(err);
-    //     else {
-    //         wxcfg.db = db;
-    //         var wxapi = require('../models/wxapi')(wxcfg);
-    //         ep.emit('wxapi', wxapi);
-    //         console.log('wxapi is ready');
-    //     }
-    // });
 }
 
 var EventHandlers = {

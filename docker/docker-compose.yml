@@ -19,5 +19,4 @@ wx:
     - NOTICE_TOKEN=app_token
     - NOTICE_AESKEY=app_aeskey
     - NOTICE_AGENTID=4
-    - MONGO_URI=mongodb://localhost/mydb
   restart: always
