@@ -152,15 +152,20 @@ var notice = function(){
     });
     
     // 6. 连接Mongo数据库，并准备wxapi
-    MongoClient.connect(config.db, function (err, db) {
-        if(err) ep.throw(err);
-        else {
-            wxcfg.db = db;
-            var wxapi = require('../models/wxapi')(wxcfg);
-            ep.emit('wxapi', wxapi);
-            console.log('wxapi is ready');
-        }
-    });
+    
+    var wxapi = require('../models/wxapi')(wxcfg);
+    ep.emit('wxapi', wxapi);
+    console.log('wxapi is ready');
+    
+    // MongoClient.connect(config.db, function (err, db) {
+    //     if(err) ep.throw(err);
+    //     else {
+    //         wxcfg.db = db;
+    //         var wxapi = require('../models/wxapi')(wxcfg);
+    //         ep.emit('wxapi', wxapi);
+    //         console.log('wxapi is ready');
+    //     }
+    // });
 }
 
 var EventHandlers = {
