@@ -136,6 +136,8 @@ var notice = function(){
                 articles[i].picurl = photoes[i % photoes.length];
             }
         }
+        
+        var wxapi = require('../models/wxapi')(wxcfg);
         if(articles.length) {
             wxapi.send(config.Notice.toUserTag, {
                 msgtype: 'news',
@@ -150,12 +152,6 @@ var notice = function(){
             });
         }
     });
-    
-    // 6. 连接Mongo数据库，并准备wxapi
-    
-    var wxapi = require('../models/wxapi')(wxcfg);
-    ep.emit('wxapi', wxapi);
-    console.log('wxapi is ready');
 }
 
 var EventHandlers = {
