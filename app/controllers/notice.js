@@ -16,10 +16,6 @@ client.on("error", function (err) {
 var sa = require('superagent');
 var cheer = require('cheerio');
 var absolution = require('absolution');
-
-var MongoClient = require('mongodb').MongoClient,
-    ObjectID = require('mongodb').ObjectID;
-
 var EventProxy = require('eventproxy');
     
 
