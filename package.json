@@ -23,6 +23,7 @@
     "mongodb": "^2.0.39",
     "morgan": "~1.5.0",
     "mysql": "^2.8.0",
+    "photo-ynu": "^0.1.0",
     "redis": "^0.12.1",
     "superagent": "^1.2.0",
     "wechat-enterprise": "^0.1.0",
