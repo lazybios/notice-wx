@@ -1,9 +1,9 @@
 FROM google/nodejs
 
 COPY ./app.js /app
-COPY ./package.json
-COPY ./app /app
-COPY ./config /app
+COPY ./package.json /app
+COPY ./app /app/
+COPY ./config /app/
 
 WORKDIR /app
 
