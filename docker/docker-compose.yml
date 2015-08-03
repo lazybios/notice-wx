@@ -2,17 +2,15 @@
 redis:
   image: redis
   volumes:
-    - /srv/mydir/database/redis/data:/data
+    - /mydir/database/redis/data:/data
   restart: always
 #wechat app
 wx:
-  image: ynuae/node
+  image: ynuae/notice-wx
   ports:
     - "35005:18080"
   links:
     - redis:redis
-  volumes:
-    - /yae/notice-wx:/app
   environment:
     - QYH_CORPID=my_corpId
     - QYH_SECRET=my_secret
