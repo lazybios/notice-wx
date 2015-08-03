@@ -1,9 +1,10 @@
 FROM google/nodejs
 
-COPY ./app.js /app
-COPY ./package.json /app
-COPY ./app /app/
-COPY ./config /app/
+RUN mkdir /app
+COPY ./app.js /app/
+COPY ./package.json /app/
+COPY ./app /app/app/
+COPY ./config /app/config/
 
 WORKDIR /app
 
