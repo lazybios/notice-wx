@@ -23,7 +23,6 @@ var config = {
     },
     port: 18080,
     db: process.env.MONGO_URI,
-    wss_db: process.env.WSS_DB_URI,
     qyh: {
         corpId: process.env.QYH_CORPID,
         secret: process.env.QYH_SECRET
