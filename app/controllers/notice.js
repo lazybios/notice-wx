@@ -89,7 +89,7 @@ var notice = function(){
     });     
     
     // 1. 获取主页上的通知列表
-    sa.get('http://www.ynu.edu.cn/xwzx/xygg/index.html').end(function(res2){
+    sa.get('http://www.ynu.edu.cn/xwzx/xygg/index.html').end(function(err, res2){
         if(res2.ok){
             var $ = cheer.load(absolution(res2.text, 'http://www.ynu.edu.cn/xwzx/xygg/'));
             var articles = [];
