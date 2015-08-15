@@ -27,7 +27,8 @@
     "redis": "^0.12.1",
     "superagent": "^1.2.0",
     "wechat-enterprise": "^0.1.0",
-    "wechat-enterprise-api": "^0.1.0"
+    "wechat-enterprise-api": "^0.1.0",
+    "wxent-api-redis": "0.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

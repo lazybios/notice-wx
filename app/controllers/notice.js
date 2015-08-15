@@ -126,7 +126,7 @@ var notice = function(){
     
     // 4. 获取通知中的图片
     // 5. 推送通知
-    ep.all('wxapi', 'articleForSend', 'photoes', function(wxapi, articles, photoes){
+    ep.all('articleForSend', 'photoes', function(articles, photoes){
         if(photoes.length){
             for(var i = 0; i < articles.length; i++){
                 articles[i].picurl = photoes[i % photoes.length];
