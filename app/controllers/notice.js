@@ -27,7 +27,7 @@ var wxcfg = {
     agentId: config.notice.agentId
 };
 
-
+var wxapi = require('wxent-api-redis')(wxcfg.corpId, wxcfg.secret, wxcfg.agentId, config.redis.host, config.redis.port);
 
     
 
@@ -133,7 +133,7 @@ var notice = function(){
             }
         }
         
-        var wxapi = require('../models/wxapi')(wxcfg);
+        // var wxapi = require('../models/wxapi')(wxcfg);
         if(articles.length) {
             wxapi.send(config.Notice.toUserTag, {
                 msgtype: 'news',
