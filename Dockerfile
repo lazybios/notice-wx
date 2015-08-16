@@ -7,6 +7,8 @@ COPY ./app /app/app/
 COPY ./config /app/config/
 
 WORKDIR /app
+RUN npm install
+RUN npm -g install forever
 
 EXPOSE 18080
-CMD npm -g install forever && npm install && npm start
+CMD npm start

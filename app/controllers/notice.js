@@ -6,6 +6,7 @@ var express = require('express'),
     router = express.Router();
 var wxent = require('wechat-enterprise');
 var mysql = require('mysql');
+var Notice = require('ynu-notice');
 var config = require('../../config/config');
 var redis = require('redis'),
 	client = redis.createClient(6379, 'redis', {});
@@ -13,9 +14,6 @@ client.on("error", function (err) {
     console.log("Error " + err);
 });
 
-var sa = require('superagent');
-var cheer = require('cheerio');
-var absolution = require('absolution');
 var EventProxy = require('eventproxy');
     
 
@@ -85,21 +83,8 @@ var notice = function(){
     });     
     
     // 1. 获取主页上的通知列表
-    sa.get('http://www.ynu.edu.cn/xwzx/xygg/index.html').end(function(err, res2){
-        if(res2.ok){
-            var $ = cheer.load(absolution(res2.text, 'http://www.ynu.edu.cn/xwzx/xygg/'));
-            var articles = [];
-            $('dl.right ul li').each(function(i, li){
-                if(i > 5) return;
-                var a = $(li).find('a');
-                articles.push({
-                    title: a.text().trim(),
-                    url: a.attr('href')
-                });
-            });
-            ep.emit('all_articles', articles);
-        }
-    }).on('error', ep.done('error'));
+    var notice = new Notice();
+    notice.get(5, ep.done('all_articles'));
     
     // 2. 筛选还没被推送过的。
     ep.all('all_articles', function(articles){
@@ -110,6 +95,7 @@ var notice = function(){
                 if(err) ep.throw(err);
                 else if(!sended) {
                     articlesForSend.push(article);
+                    client.set(article.url + ':sended', true);
                 }
                 if(++check_count === article.length) ep.emit('articleForSend', articlesForSend);
             });
@@ -133,7 +119,6 @@ var notice = function(){
             }
         }
         
-        // var wxapi = require('../models/wxapi')(wxcfg);
         if(articles.length) {
             wxapi.send(config.Notice.toUserTag, {
                 msgtype: 'news',
@@ -141,11 +126,7 @@ var notice = function(){
                     articles: articles
                 },
                 safe: '0'
-            }, function (err) {
-                if (err) {
-                    console.log('error:' + err);
-                }
-            });
+            }, ep.fail('done'));
         }
     });
 }
